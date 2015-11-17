@@ -49,11 +49,9 @@ public class NBody {
      */
     public List<Vector2d> calculateAccelerations() {
     	List<Vector2d> accs = new LinkedList<Vector2d>();
-    	int i = 0;
 		Iterator<Body> iter = this.bodies.iterator();
 		while(iter.hasNext()){
-			accs.add(this.bodies.get(i).calculateAcceleration(getBodies()));
-			i++;
+			accs.add(iter.next().calculateAcceleration(getBodies()));
 		}
 		return accs;
     }
@@ -63,11 +61,11 @@ public class NBody {
      * @param elapsedTime the time step of the simulation.
      */
     public void update(double elapsedTime) {
-        Iterator<Body> iter = bodies.iterator();
+        Iterator<Body> iter = getBodies().iterator();
         int i = 0;
         while(iter.hasNext()){
-        	this.bodies.get(i).update(elapsedTime, this.bodies.get(i).calculateAcceleration(this.bodies));
-        	i++;
+        	iter.next().update(elapsedTime, calculateAccelerations().get(i));
+        	i++; 
         }
     }
     

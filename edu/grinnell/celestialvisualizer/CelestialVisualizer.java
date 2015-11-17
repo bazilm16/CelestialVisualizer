@@ -34,7 +34,7 @@ public class CelestialVisualizer {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.add(panel);
         frame.pack();
-        frame.setResizable(false);
+        frame.setResizable(true);
         frame.setVisible(true);
         
         // Add a key listener so that we'll start the simulation when

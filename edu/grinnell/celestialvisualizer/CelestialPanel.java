@@ -17,7 +17,7 @@ public class CelestialPanel extends JPanel {
     private static final long serialVersionUID = 1L;
     
     /** The width and height of the panel. */
-    public static final int DIMENSION = 1000;
+    public static final int DIMENSION = 500;
 
     private NBody model;
     private int width;

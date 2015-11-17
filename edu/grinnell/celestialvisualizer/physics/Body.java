@@ -60,13 +60,11 @@ public class Body {
      */
     public Vector2d calculateAcceleration(List<Body> bodies) {
     	Iterator<Body> iter = bodies.iterator();
-    	int i = 0;
-    	Vector2d acc = new Vector2d(0,0);
+    	Vector2d acc = Vector2d.zero;
     	//loop through the list calculating the acceleration for each body
     	while(iter.hasNext()){
     		//calculate the acceleration between the two bodies 
-    		acc.add(Physics.calculateAccelerationOn(bodies.get(i).position, bodies.get(i).mass, this.position));
-    		i++;
+    		acc.add(Physics.calculateAccelerationOn(iter.next().getPosition(), this.mass, this.position));
     	}
 		return acc;
     }
@@ -79,6 +77,7 @@ public class Body {
      * @param acc the calculated acceleration used to update this body
      */
     public void update(double elapsedTime, Vector2d acc) {
-        this.velocity = Physics.calculateUpdatedVelocity(getVelocity(), elapsedTime, acc);
+        this.velocity = Physics.calculateUpdatedVelocity(this.getVelocity(), elapsedTime, acc);
+        this.position = Physics.calculateUpdatedPosition(this.getPosition(), elapsedTime, this.getVelocity(), acc);
     }
 }
